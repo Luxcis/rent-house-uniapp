@@ -59,7 +59,7 @@ onShow(() => send())
               <wd-count-to
                 prefix="￥"
                 :start-val="0"
-                :end-val="data.statistics.total"
+                :end-val="data.statistics.total ?? 0"
                 :font-size="24"
                 color="#3b82f6"
                 :duration="1500"

@@ -35,6 +35,7 @@ export const useAuthStore = defineStore('auth', {
           this.user = res
           this.roles = res.roles ?? []
           if (!res.name) {
+            console.log('完善用户资料')
             if (this.isWechatMp) {
               wx.getUserProfile({
                 desc: '用于完善用户资料',

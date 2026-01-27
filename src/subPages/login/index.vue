@@ -15,6 +15,7 @@ const loading = ref(false)
 const handler = () => {
   loading.value = true
   if (isDev) {
+    console.log('dev login')
     devLogin().then((token) => {
       setToken(token)
       setUser()
