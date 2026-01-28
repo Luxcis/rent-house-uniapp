@@ -224,6 +224,8 @@ onReachBottom(() => {
               prop="water"
               clearable
               placeholder="请输入水表读数"
+              :cursor-spacing="150"
+              confirm-type="next"
               :rules="[{ required: true, message: '请填写水表读数' }]"
             />
             <wd-input
@@ -234,6 +236,8 @@ onReachBottom(() => {
               clearable
               placeholder="请输入电表读数"
               inputmode="numeric"
+              :cursor-spacing="100"
+              confirm-type="next"
               :rules="[{ required: true, message: '请填写电表读数' }]"
             />
             <!-- 额外信息非必填 -->
@@ -245,6 +249,8 @@ onReachBottom(() => {
               clearable
               placeholder="请输入额外费用"
               inputmode="numeric"
+              :cursor-spacing="50"
+              confirm-type="next"
             />
             <wd-input
               v-model="model.extRemark"
@@ -254,6 +260,7 @@ onReachBottom(() => {
               clearable
               placeholder="请输入额外说明"
               inputmode="text"
+              confirm-type="done"
             />
           </wd-cell-group>
         </wd-form>

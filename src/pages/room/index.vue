@@ -174,6 +174,8 @@ onPullDownRefresh(() => send())
                 prop="name"
                 clearable
                 placeholder="请输入房间名称"
+                :cursor-spacing="100"
+                confirm-type="next"
                 :rules="[{ required: true, message: '请填写房间名称' }]"
               />
               <wd-input
@@ -184,6 +186,8 @@ onPullDownRefresh(() => send())
                 clearable
                 placeholder="请输入基础租金"
                 inputmode="numeric"
+                :cursor-spacing="50"
+                confirm-type="next"
                 :rules="[{ required: true, message: '请填写基础租金' }]"
               />
               <wd-radio-group
