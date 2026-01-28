@@ -53,6 +53,7 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const formatIfNumber: typeof import('./utils/index')['formatIfNumber']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentPath: typeof import('./utils/index')['getCurrentPath']
@@ -65,7 +66,7 @@ declare global {
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const isDefined: typeof import('@vueuse/core')['isDefined']
-  const isNumber: typeof import('./utils/index')['isNumber']
+  const isNotBlank: typeof import('./utils/index')['isNotBlank']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
@@ -356,6 +357,7 @@ declare global {
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const userBindRoles: typeof import('./api/execute')['userBindRoles']
+  const userInfo: typeof import('./api/auth')['userInfo']
   const userList: typeof import('./api/search')['userList']
   const userStatusChange: typeof import('./api/execute')['userStatusChange']
   const userinfo: typeof import('./api/auth')['userinfo']
@@ -425,6 +427,7 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatIfNumber: UnwrapRef<typeof import('./utils/index')['formatIfNumber']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentPath: UnwrapRef<typeof import('./utils/index')['getCurrentPath']>
@@ -435,7 +438,7 @@ declare module 'vue' {
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
-    readonly isNumber: UnwrapRef<typeof import('./utils/index')['isNumber']>
+    readonly isNotBlank: UnwrapRef<typeof import('./utils/index')['isNotBlank']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -720,9 +723,9 @@ declare module 'vue' {
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly userBindRoles: UnwrapRef<typeof import('./api/execute')['userBindRoles']>
+    readonly userInfo: UnwrapRef<typeof import('./api/auth')['userInfo']>
     readonly userList: UnwrapRef<typeof import('./api/search')['userList']>
     readonly userStatusChange: UnwrapRef<typeof import('./api/execute')['userStatusChange']>
-    readonly userinfo: UnwrapRef<typeof import('./api/auth')['userinfo']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

@@ -151,7 +151,7 @@ onReachBottom(() => {
               </view>
             </template>
             <template #default>
-              <view class="pb-4">
+              <view class="flex pb-4">
                 <wd-tag
                   custom-class="text-xs!"
                   mark
@@ -161,6 +161,9 @@ onReachBottom(() => {
                 </wd-tag>
                 <text class="ml-2">
                   {{ log.api }}
+                </text>
+                <text class="flex-1 text-right text-gray-400">
+                  {{ log.ip }}
                 </text>
               </view>
             </template>

@@ -67,9 +67,7 @@ const buildSignature = (data: Record<string, any>): Record<string, any> => {
     if (value === null || value === undefined || value === '' || typeof value === 'object') {
       continue
     }
-    if (isNumber(value) && key !== 'id' && key !== 'roomId' && key !== 'status') {
-      value = Number(value).toFixed(2)
-    }
+    value = formatIfNumber(value)
     signStr += `${key}${String(value)}`
   }
   const { token } = useAuthStore()

@@ -8,15 +8,16 @@ export function getCurrentPath() {
   return currentPage.route || ''
 }
 
-export const isNumber = (value: any) => {
-  if (typeof value === 'number') {
-    return true
-  }
-  else if (typeof value === 'string') {
-    const reg = /^\d+(?:\.\d+)?$/
-    return reg.test(value)
+export const formatIfNumber = (value: string): string => {
+  const reg = /^\d+\.\d+$/
+  if (reg.test(value)) {
+    return Number(value).toFixed(2)
   }
   else {
-    return false
+    return value
   }
+}
+
+export const isNotBlank = (value?: string): boolean => {
+  return (value ?? '').trim().length > 0
 }

@@ -41,8 +41,6 @@ const { data: rooms, send: refreshRooms } = useRequest(roomList(), { force: true
 const handleConfirm = (data: any) => {
   currentRoom.value = data.value
   uni.startPullDownRefresh()
-  bills.value = []
-  refreshBills()
 }
 
 const showAction = ref(false)
@@ -66,8 +64,6 @@ const {
 ).onSuccess(() => {
   showSuccess({ msg: '保存成功' })
   uni.startPullDownRefresh()
-  bills.value = []
-  refreshBills()
   showForm.value = false
 })
 
@@ -119,7 +115,10 @@ const handleSubmit = () => {
 }
 
 onComplete(() => uni.stopPullDownRefresh())
-onPullDownRefresh(() => refreshRooms())
+onPullDownRefresh(() => {
+  bills.value = []
+  refreshRooms()
+})
 
 onReachBottom(() => {
   if (state.value === 'loading') {

@@ -37,6 +37,6 @@ export const ping = () => {
   )
 }
 
-export const userinfo = () => {
+export const userInfo = () => {
   return httpRequest.Post<User>('/auth/user_info')
 }

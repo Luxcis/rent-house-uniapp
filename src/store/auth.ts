@@ -25,32 +25,9 @@ export const useAuthStore = defineStore('auth', {
     setToken(token: string) {
       this.token = token
     },
-    setUser(user?: User) {
-      if (user) {
-        this.user = user
-        this.roles = user.roles ?? []
-      }
-      else {
-        return userinfo().then((res) => {
-          this.user = res
-          this.roles = res.roles ?? []
-          if (!res.name) {
-            console.log('完善用户资料')
-            if (this.isWechatMp) {
-              wx.getUserProfile({
-                desc: '用于完善用户资料',
-                success: (profile) => {
-                  const name = profile.userInfo.nickName
-                  doComplete(res.id, name)
-                },
-              })
-            }
-            else {
-              console.error('请使用微信小程序访问')
-            }
-          }
-        })
-      }
+    setUser(user: User) {
+      this.user = user
+      this.roles = user.roles ?? []
     },
     hasRole(role: string): boolean {
       return this.roles.includes(role)

@@ -6,38 +6,44 @@ definePage({
     navigationStyle: 'custom',
   },
 })
-const { isWechatMp, setToken, setUser } = useAuthStore()
+const { setToken, setUser } = useAuthStore()
 const router = useRouter()
-const isDev = import.meta.env.DEV
+const { prompt } = useMessage()
 
 const loading = ref(false)
 
 const handler = () => {
   loading.value = true
-  if (isDev) {
-    console.log('dev login')
-    devLogin().then((token) => {
-      setToken(token)
-      setUser()
-      router.pushTab({ name: 'index' })
-    })
-    return
-  }
-  if (isWechatMp) {
-    wx.login({
-      success: (res) => {
-        doLogin(res.code).then((token) => {
-          setToken(token)
-          setUser()
-          router.pushTab({ name: 'index' })
+  uni.login({
+    success({ code }) {
+      doLogin(code).then((token) => {
+        setToken(token)
+        userInfo().then((user) => {
+          setUser(user)
+          if (!user.name) {
+            // 完善信息
+            prompt({
+              title: '请输入用户名',
+              inputType: 'nickname',
+              inputValidate: val => isNotBlank(val as string),
+              inputError: '请输入用户名',
+            }).then((res) => {
+              if (res.action === 'confirm') {
+                const value = res.value as string
+                doComplete(user.id, value.trim()).then(() => router.pushTab({ name: 'index' }))
+              }
+            })
+          }
+          else {
+            router.pushTab({ name: 'index' })
+          }
         })
-      },
-    })
-  }
-  else {
-    console.error('请使用微信小程序访问')
-  }
-  loading.value = false
+      })
+    },
+    complete: () => {
+      loading.value = false
+    },
+  })
 }
 </script>
 
