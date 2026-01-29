@@ -7,11 +7,13 @@ export interface TabbarItem {
   show: boolean
 }
 
+const { hasRole } = useAuthStore()
+
 const tabbarItems = ref<TabbarItem[]>([
   { name: 'index', value: null, active: true, title: '首页', icon: 'chart-pie', show: true },
   { name: 'room', value: null, active: false, title: '房间', icon: 'home', show: true },
   { name: 'bill', value: null, active: false, title: '账单', icon: 'a-rootlist', show: true },
-  { name: 'manage', value: null, active: false, title: '管理', icon: 'app', show: true },
+  { name: 'manage', value: null, active: false, title: '管理', icon: 'app', show: hasRole('admin') },
 ])
 
 export function useTabbar() {

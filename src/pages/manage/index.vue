@@ -80,7 +80,7 @@ onReachBottom(() => {
             <wd-cell
               v-for="(user, index) in users"
               :key="index"
-              :title="user.name"
+              :title="user.name ?? '微信用户'"
               icon="user"
               clickable
               @click="showRoleBind(user)"
