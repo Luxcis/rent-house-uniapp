@@ -30,7 +30,11 @@ const handler = () => {
             }).then((res) => {
               if (res.action === 'confirm') {
                 const value = res.value as string
-                doComplete(user.id, value.trim()).then(() => router.pushTab({ name: 'index' }))
+                doComplete(user.id, value.trim())
+                  .then(() => router.pushTab({ name: 'index' }))
+                  .catch(() => {
+                    loading.value = false
+                  })
               }
             })
           }
@@ -38,9 +42,11 @@ const handler = () => {
             router.pushTab({ name: 'index' })
           }
         })
+      }).catch(() => {
+        loading.value = false
       })
     },
-    complete: () => {
+    error: () => {
       loading.value = false
     },
   })

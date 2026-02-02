@@ -76,24 +76,29 @@ onReachBottom(() => {
     <wd-tabs animated>
       <wd-tab title="用户">
         <view class="bg-gray-100">
-          <wd-cell-group>
-            <wd-cell
-              v-for="(user, index) in users"
-              :key="index"
-              :title="user.name ?? '微信用户'"
-              icon="user"
-              clickable
-              @click="showRoleBind(user)"
-            >
-              <wd-tag
-                :type="user.active ? 'primary' : 'danger'"
-                round
+          <wd-row
+            v-for="(user, index) in users"
+            :key="index"
+            custom-class="w-screen"
+          >
+            <wd-col :span="20">
+              <wd-cell
+                :title="user.name ?? '微信用户'"
+                icon="user"
+                clickable
+                @click="showRoleBind(user)"
+              />
+            </wd-col>
+            <wd-col :span="4">
+              <view
+                class="h-full p-[10px] text-center text-white leading-[24px]"
+                :class="!user.active ? 'bg-[#4d80f0]' : 'bg-[#fa4350]'"
                 @click.stop="handleActive(user)"
               >
-                {{ user.active ? '启用' : '禁用' }}
-              </wd-tag>
-            </wd-cell>
-          </wd-cell-group>
+                {{ !user.active ? '启用' : '禁用' }}
+              </view>
+            </wd-col>
+          </wd-row>
         </view>
       </wd-tab>
       <wd-tab title="角色">
